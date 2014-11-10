@@ -1,0 +1,169 @@
+﻿<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:DataServices m:DataServiceVersion="1.0" m:MaxDataServiceVersion="3.0" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+    <Schema Namespace="CarRentalWebService.Models" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <EntityType Name="CarBrand">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="Name" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="CarModels" Relationship="CarRentalWebService.Models.CarModel_Brand" ToRole="CarModel_Brand_Source" FromRole="CarModel_Brand_Target" />
+      </EntityType>
+      <EntityType Name="CarModel">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="Name" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="Image" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="AutoTransmission" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Aircondition" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Seats" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Doors" Type="Edm.Int32" Nullable="false" />
+        <Property Name="LargeBags" Type="Edm.Int32" Nullable="false" />
+        <Property Name="SmallBags" Type="Edm.Int32" Nullable="false" />
+        <Property Name="PricePerDay" Type="Edm.Int32" Nullable="false" />
+        <Property Name="PricePerHour" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Quantity" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Brand_Id" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="Brand" Relationship="CarRentalWebService.Models.CarModel_Brand" ToRole="CarModel_Brand_Target" FromRole="CarModel_Brand_Source" />
+        <NavigationProperty Name="Features" Relationship="CarRentalWebService.Models.CarFeature_CarModels" ToRole="CarFeature_CarModels_Source" FromRole="CarFeature_CarModels_Target" />
+        <NavigationProperty Name="Requests" Relationship="CarRentalWebService.Models.Request_Model" ToRole="Request_Model_Source" FromRole="Request_Model_Target" />
+        <NavigationProperty Name="Reviews" Relationship="CarRentalWebService.Models.Review_Model" ToRole="Review_Model_Source" FromRole="Review_Model_Target" />
+      </EntityType>
+      <EntityType Name="CarFeature">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="Name" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="CarModels" Relationship="CarRentalWebService.Models.CarFeature_CarModels" ToRole="CarFeature_CarModels_Target" FromRole="CarFeature_CarModels_Source" />
+      </EntityType>
+      <EntityType Name="Request">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="Name" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="Email" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="Phone" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="FromDate" Type="Edm.DateTime" />
+        <Property Name="ToDate" Type="Edm.DateTime" />
+        <Property Name="PriceTotal" Type="Edm.Int32" Nullable="false" />
+        <Property Name="State" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Model_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="City_Id" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="City" Relationship="CarRentalWebService.Models.Request_City" ToRole="Request_City_Target" FromRole="Request_City_Source" />
+        <NavigationProperty Name="Model" Relationship="CarRentalWebService.Models.Request_Model" ToRole="Request_Model_Target" FromRole="Request_Model_Source" />
+      </EntityType>
+      <EntityType Name="City">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="Name" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="ZipCode" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="Requests" Relationship="CarRentalWebService.Models.Request_City" ToRole="Request_City_Source" FromRole="Request_City_Target" />
+      </EntityType>
+      <EntityType Name="Review">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="Model_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Content" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="Stars" Type="Edm.Int32" Nullable="false" />
+        <Property Name="email" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="Model" Relationship="CarRentalWebService.Models.Review_Model" ToRole="Review_Model_Target" FromRole="Review_Model_Source" />
+      </EntityType>
+      <Association Name="CarModel_Brand">
+        <End Type="CarRentalWebService.Models.CarBrand" Role="CarModel_Brand_Target" Multiplicity="1">
+          <OnDelete Action="Cascade" />
+        </End>
+        <End Type="CarRentalWebService.Models.CarModel" Role="CarModel_Brand_Source" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="CarModel_Brand_Target">
+            <PropertyRef Name="Id" />
+          </Principal>
+          <Dependent Role="CarModel_Brand_Source">
+            <PropertyRef Name="Brand_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="CarFeature_CarModels">
+        <End Type="CarRentalWebService.Models.CarFeature" Role="CarFeature_CarModels_Source" Multiplicity="*" />
+        <End Type="CarRentalWebService.Models.CarModel" Role="CarFeature_CarModels_Target" Multiplicity="*" />
+      </Association>
+      <Association Name="Request_Model">
+        <End Type="CarRentalWebService.Models.CarModel" Role="Request_Model_Target" Multiplicity="1">
+          <OnDelete Action="Cascade" />
+        </End>
+        <End Type="CarRentalWebService.Models.Request" Role="Request_Model_Source" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Request_Model_Target">
+            <PropertyRef Name="Id" />
+          </Principal>
+          <Dependent Role="Request_Model_Source">
+            <PropertyRef Name="Model_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="Review_Model">
+        <End Type="CarRentalWebService.Models.CarModel" Role="Review_Model_Target" Multiplicity="1">
+          <OnDelete Action="Cascade" />
+        </End>
+        <End Type="CarRentalWebService.Models.Review" Role="Review_Model_Source" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Review_Model_Target">
+            <PropertyRef Name="Id" />
+          </Principal>
+          <Dependent Role="Review_Model_Source">
+            <PropertyRef Name="Model_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="Request_City">
+        <End Type="CarRentalWebService.Models.City" Role="Request_City_Target" Multiplicity="1">
+          <OnDelete Action="Cascade" />
+        </End>
+        <End Type="CarRentalWebService.Models.Request" Role="Request_City_Source" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Request_City_Target">
+            <PropertyRef Name="Id" />
+          </Principal>
+          <Dependent Role="Request_City_Source">
+            <PropertyRef Name="City_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <EntityContainer Name="DbContextModel" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="CarBrands" EntityType="CarRentalWebService.Models.CarBrand" />
+        <EntitySet Name="CarModels" EntityType="CarRentalWebService.Models.CarModel" />
+        <EntitySet Name="CarFeatures" EntityType="CarRentalWebService.Models.CarFeature" />
+        <EntitySet Name="Requests" EntityType="CarRentalWebService.Models.Request" />
+        <EntitySet Name="Cities" EntityType="CarRentalWebService.Models.City" />
+        <EntitySet Name="Reviews" EntityType="CarRentalWebService.Models.Review" />
+        <AssociationSet Name="CarModel_Brand" Association="CarRentalWebService.Models.CarModel_Brand">
+          <End Role="CarModel_Brand_Target" EntitySet="CarBrands" />
+          <End Role="CarModel_Brand_Source" EntitySet="CarModels" />
+        </AssociationSet>
+        <AssociationSet Name="CarFeature_CarModels" Association="CarRentalWebService.Models.CarFeature_CarModels">
+          <End Role="CarFeature_CarModels_Target" EntitySet="CarModels" />
+          <End Role="CarFeature_CarModels_Source" EntitySet="CarFeatures" />
+        </AssociationSet>
+        <AssociationSet Name="Request_Model" Association="CarRentalWebService.Models.Request_Model">
+          <End Role="Request_Model_Target" EntitySet="CarModels" />
+          <End Role="Request_Model_Source" EntitySet="Requests" />
+        </AssociationSet>
+        <AssociationSet Name="Review_Model" Association="CarRentalWebService.Models.Review_Model">
+          <End Role="Review_Model_Target" EntitySet="CarModels" />
+          <End Role="Review_Model_Source" EntitySet="Reviews" />
+        </AssociationSet>
+        <AssociationSet Name="Request_City" Association="CarRentalWebService.Models.Request_City">
+          <End Role="Request_City_Source" EntitySet="Requests" />
+          <End Role="Request_City_Target" EntitySet="Cities" />
+        </AssociationSet>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>
