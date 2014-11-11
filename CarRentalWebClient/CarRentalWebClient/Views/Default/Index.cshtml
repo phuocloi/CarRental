@@ -1,0 +1,33 @@
+﻿@using CarRentalWebClient.CarRentalServiceReference;
+@{
+    ViewBag.Title = "List Car";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<CarModel> Models = ViewBag.Models;
+}
+
+<h2>List Car</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Brand
+            </th>
+            <th>
+                Model
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Models)
+        {
+            <tr>
+                <td>
+                    @item.Brand.Name.ToString()
+                </td>
+                <td>
+                    @item.Name.ToString()
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
