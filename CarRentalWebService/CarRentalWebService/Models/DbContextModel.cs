@@ -108,7 +108,28 @@
             };
             Features.ForEach(f => context.CarFeatures.Add(f));
             context.SaveChanges();
-            //base.Seed(context);
+
+            var Requests = new List<Request>
+            {
+                new Request{Name="Henry", Phone="0988889999", FromDate=Convert.ToDateTime("11/11/2014 12:00:00"), ToDate= Convert.ToDateTime("12/11/2014 12:00:00"), Email="phuocloi@gmail.com", Model_Id=8, City_Id=2, PriceTotal=200,},
+                new Request{Name="Ho Phuoc Loi", Phone="01694463475", FromDate=Convert.ToDateTime("12/11/2014 9:00:00"), ToDate= Convert.ToDateTime("13/11/2014 9:00:00"), Email="phuoc.loi@gmail.com", Model_Id=7, City_Id=1, PriceTotal=400,},
+                new Request{Name="Vo Hoang Dang Khoa", Phone="0987656789", FromDate=Convert.ToDateTime("11/11/2014 7:00:00"), ToDate= Convert.ToDateTime("11/11/2014 17:00:00"), Email="phuocloiit@gmail.com", Model_Id=9, City_Id=3, PriceTotal=250,},
+                new Request{Name="Nguyen Hoang Nam", Phone="01694463510", FromDate=Convert.ToDateTime("10/11/2014 12:00:00"), ToDate= Convert.ToDateTime("11/11/2014 12:00:00"), Email="phuocloi.it@gmail.com", Model_Id=7, City_Id=1, PriceTotal=150,},
+                new Request{Name="Tim", Phone="0909090909", FromDate=Convert.ToDateTime("11/11/2014 8:00:00"), ToDate= Convert.ToDateTime("13/11/2014 18:00:00"), Email="phuoc.loi.it@gmail.com", Model_Id=6, City_Id=2, PriceTotal=300,}
+            };
+            Requests.ForEach(g => context.Requests.Add(g));
+            context.SaveChanges();
+
+            var Reviews = new List<Review>
+            {
+                new Review{Model_Id=8, Content="Good!", Stars=4, email="phuocloi@gmail.com",},
+                new Review{Model_Id=7, Content="Great!", Stars=3, email="phuoc.loi@gmail.com",},
+                new Review{Model_Id=9, Content="Excelent!", Stars=5, email="phuocloiit@gmail.com",},
+                new Review{Model_Id=7, Content="Cool!", Stars=4, email="phuocloi.it@gmail.com",},
+                new Review{Model_Id=6, Content="Cool!", Stars=4, email="phuoc.loi.it@gmail.com",}
+            };
+            Reviews.ForEach(h => context.Reviews.Add(h));
+            context.SaveChanges();
         }
     }
 

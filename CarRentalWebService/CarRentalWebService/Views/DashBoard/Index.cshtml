@@ -1,11 +1,62 @@
-﻿@{
+﻿@using CarRentalWebService.ViewModels;
+@model IEnumerable<CarRentalWebService.Models.Review>
+@{
     ViewBag.Title = "Home Page";
+    //List<String> list = ViewBag.Brand;
+    List<Statistic> statistics = ViewBag.Statistics;
 }
 
 <div class="jumbotron">
-    <h1>Dash Board</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p class="lead" style="margin:auto;">Thống kê các đánh giá mới nhất về chất lượng dịch vụ của công ty</p>
+    <div>
+        <table>
+            <tr>
+                <th style="width:600px;">
+                    <p style="color:red; font-style:italic; font-size: 16px;">Thống kê các lượt đánh giá mới nhất</p>
+                </th>
+                <th style="width:1000px;"></th>
+                <th style ="width:600px;">
+                    <p style="color:red; font-style:italic; font-size: 16px;">Thống kê các lượt thuê xe mới nhất</p>
+                </th>
+            </tr>
+            <tr>
+                <th style="width: 600px; font-size: 11px;">
+                    @{Html.RenderAction("_GetTop", "DashBoard");}
+                </th>
+                <th style="width: 1000px;"></th>
+                <th style="width: 600px; font-size: 11px;">
+                    @{Html.RenderAction("GetTopCar", "DashBoard");}
+                </th>
+            </tr>
+        </table>
+    </div>
+
+    <script type="text/javascript">
+    google.load("visualization", "1", { packages: ["corechart"] });
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Các loại xe', 'Lượt thuê', 'Lượt đánh giá'],
+          //["CR-V", 100, 30],
+          @foreach (var item in statistics) {
+            <text>
+                ['@item.NameCar',@item.soluotthue,@item.soluotdanhgia],
+            </text>
+          }
+        ]);
+        var options = {
+            title: 'Thống kê số lượng thuê xe và đánh giá dịch vụ thuê xe',
+            hAxis: { title: 'Các loại xe cho thuê', titleTextStyle: {color:'black'} }
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+    }
+    </script>
+
+    <div id="chart_div" style="width: 100%; height: 500px;"></div>
+
 </div>
+
 
 <div class="row">
     <div class="col-md-4">

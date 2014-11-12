@@ -26,9 +26,11 @@ namespace CarRentalWebService.Models
         public string Phone { get; set; }
 
         [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime? FromDate { get; set; }
 
         [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime? ToDate { get; set; }
 
         public int PriceTotal { get; set; }

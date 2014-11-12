@@ -1,0 +1,40 @@
+﻿@model IEnumerable<CarRentalWebService.Models.Request>
+
+@{
+    ViewBag.Title = "GetTopCar";
+    Layout = null; 
+}
+
+@*<h2>GetTopCar</h2>*@
+<div style="width: 100%; ">
+    @*<p style="color: red;">Thong ke cac loai xe vua duoc thue</p>*@
+<table class="table">
+    <tr>
+        <th>
+            Tên xe
+        </th>
+        <th>
+            Ngày thuê
+        </th>
+        <th>
+            Ngày trả
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FromDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ToDate)
+            </td>
+        </tr>
+    }
+
+</table>
+</div>

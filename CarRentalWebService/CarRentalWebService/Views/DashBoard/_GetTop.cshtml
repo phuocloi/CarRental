@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CarRentalWebService.Models.Review> 
+
+@{
+    ViewBag.Title = "_GetTop";
+    Layout = null;
+}
+
+@*<h2>_GetTop</h2>*@
+<div style="width: 100%;">
+    <table class="table">
+        <tr>
+            <th>
+                Tên xe
+            </th>
+            <th>
+                Nội dung
+            </th>
+            <th>
+                Xếp hạng
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stars)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
